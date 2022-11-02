@@ -1,34 +1,33 @@
-import React, {useState} from 'react';
-import {View, Button, StyleSheet, Text} from 'react-native';
+import React, { useState } from 'react';
+import { View, Button, StyleSheet, Text, TextInput } from 'react-native';
+
+import Saldo from './components/Saldo';
+import Lancamento from './components/lancamento';
+import SaldoPovider from './context/ContaContext';
 
 const App = () => {
 
-  const [saldo, setSaldo] = useState(0);
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}> Saido: {saldo} </Text>
-       <Button
-        title="ADICIONAR SALDO"
-        onPress={() => { setSaldo(saldo + 50);}}
-      />
-    </View>
-  );
+    <SaldoPovider>
+      <View style={styles.container}>
 
+        <Saldo />
+
+        <Lancamento Credito />
+
+        <Lancamento />
+
+      </View>
+    </SaldoPovider>
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, 
-    backgroundColor:"#fff"
+    flex: 1,
+    backgroundColor: "#fff",
+    padding: 20
   },
-
-  text:{
-    fontSize: 20,
-    textAlign: 'center',
-    paddingTop: 20,
-    fontWeight: 'bold'
-  }
-  
 });
 
 export default App;
